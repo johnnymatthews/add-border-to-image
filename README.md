@@ -26,7 +26,7 @@ I don't like looking at that notch, but the only real way to hid it is by settin
 
 ### Prebuilt binary
 
-There's a prebuilt binary over in the [Releases](./releases) section of this repo. Just grab that and throw it somewhere useful:
+There's a prebuilt binary over in the [Releases](https://github.com/johnnymatthews/add-border-to-image/releases) section of this repo. Just grab that and throw it somewhere useful:
 
 ```shell
 sudo curl -L https://github.com/johnnymatthews/add-border-to-image/releases/download/v1.0.0/image-border -o /usr/local/bin/image-border
