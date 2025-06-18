@@ -1,6 +1,6 @@
 # Add border to image
 
-Literally just a CLI tool that adds a fixed black border to a user-supplied image.
+Literally just a CLI tool that adds a fixed black border to the top of a user-supplied image.
 
 ## Why
 
@@ -11,16 +11,18 @@ The latest itterations of Apple's Macbooks have this stupid little notch at the 
 I don't like looking at that notch, but the only real way to hid it is by setting the desktop background to black. I like setting pretty pictures for my wallpaper, and I like chaging said pictures every once in a while. So I (read Claude.ai) created this CLI tool to:
 
 - Take an image.
-- Apply a black border to it.
+- Apply a black border to the top of it (7% of the image width).
 - Save the image in the same location without any compression.
+
+This creates a letterbox effect that hides the notch when used as a desktop background.
 
 ### Original image
 
 ![The Maas at Dordrecht, by Aelbert Cuyp (1650)](./sample-image.jpg)
 
-### Image with a border
+### Image with a top border
 
-![The Maas at Dordrecht, by Aelbert Cuyp (1650), but this time with a black border around it.](./sample-image-with-border.jpg)
+![The Maas at Dordrecht, by Aelbert Cuyp (1650), but this time with a black border at the top.](./sample-image-with-border.jpg)
 
 ## Install
 
@@ -53,10 +55,20 @@ sudo chmod +x /usr/local/bin/image-border
 1. If you want, you can move it somewhere nice so that you can run this crap from anywhere on your machine:
 
   ```shell
-  sudo mm ./target/release/image-border /usr/local/bin
+  sudo mv ./target/release/image-border /usr/local/bin
   ```
 
 1. Done.
+
+## Usage
+
+```shell
+image-border path/to/your/image.jpg
+```
+
+The tool will create a new image with `-with-border` added to the filename in the same directory as the original image.
+
+**Supported formats:** JPG, JPEG, PNG
 
 ## Who
 
