@@ -47,18 +47,17 @@ fn process_image(input_path: &Path) -> Result<(), Box<dyn std::error::Error>> {
         .map_err(|e| format!("Failed to load image: {}", e))?;
     println!("✓ Image loaded successfully");
 
-    // Calculate border sizes
+    // Calculate border size (only top border)
     let original_width = img.width();
     let original_height = img.height();
-    let side_border = (original_width * 5) / 100;  // 5% for left, right, bottom
-    let top_border = (original_width * 7) / 100;   // 7% for top
+    let top_border = (original_width * 7) / 100;   // 7% for top only
 
-    // Calculate new dimensions
-    let new_width = original_width + (2 * side_border);
-    let new_height = original_height + top_border + side_border;
+    // Calculate new dimensions (only height increases)
+    let new_width = original_width;  // No change to width
+    let new_height = original_height + top_border;  // Only add top border
 
     println!("Image dimensions: {}x{}", original_width, original_height);
-    println!("Border sizes: top={}px (7% of width), sides={}px (5% of width)", top_border, side_border);
+    println!("Border size: top={}px (7% of width)", top_border);
     println!("New dimensions: {}x{}", new_width, new_height);
 
     // Create new image with border
@@ -70,14 +69,14 @@ fn process_image(input_path: &Path) -> Result<(), Box<dyn std::error::Error>> {
             
             println!("Processing RGBA image with transparency support...");
             
-            // Copy original image to center (accounting for different border sizes)
+            // Copy original image starting at (0, top_border)
             for y in 0..original_height {
                 if y % (original_height / 10).max(1) == 0 {
                     println!("Progress: {}%", (y * 100) / original_height);
                 }
                 for x in 0..original_width {
                     let pixel = rgba_img.get_pixel(x, y);
-                    new_img.put_pixel(x + side_border, y + top_border, *pixel);
+                    new_img.put_pixel(x, y + top_border, *pixel);
                 }
             }
             
@@ -89,14 +88,14 @@ fn process_image(input_path: &Path) -> Result<(), Box<dyn std::error::Error>> {
             
             println!("Processing RGB image...");
             
-            // Copy original image to center (accounting for different border sizes)
+            // Copy original image starting at (0, top_border)
             for y in 0..original_height {
                 if y % (original_height / 10).max(1) == 0 {
                     println!("Progress: {}%", (y * 100) / original_height);
                 }
                 for x in 0..original_width {
                     let pixel = rgb_img.get_pixel(x, y);
-                    new_img.put_pixel(x + side_border, y + top_border, *pixel);
+                    new_img.put_pixel(x, y + top_border, *pixel);
                 }
             }
             
