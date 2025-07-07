@@ -31,7 +31,7 @@ This creates a letterbox effect that hides the notch when used as a desktop back
 There's a prebuilt binary over in the [Releases](https://github.com/johnnymatthews/add-border-to-image/releases) section of this repo. Just grab that and throw it somewhere useful:
 
 ```shell
-sudo curl -L https://github.com/johnnymatthews/add-border-to-image/releases/download/v1.0.0/image-border -o /usr/local/bin/image-border
+sudo curl -L https://github.com/johnnymatthews/add-border-to-image/releases/download/v1.1.0/image-border -o /usr/local/bin/image-border
 sudo chmod +x /usr/local/bin/image-border
 ```
 
